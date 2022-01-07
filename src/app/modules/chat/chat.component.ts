@@ -15,7 +15,7 @@ export class ChatComponent implements OnInit {
   constructor(private http: HttpClient) { }
 
   title = 'app';
-  currentTheme:any = 'dark-theme';
+  currentTheme:any = 'light-theme';
   triggeredEvents = [];
   fileUploadUrl: string = `${SignalRAdapter.serverBaseUrl}UploadFile`;
 

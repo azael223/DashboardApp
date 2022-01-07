@@ -7,6 +7,9 @@ import { SalesGraphComponent } from './components/sales-graph/sales-graph.compon
 import { AddSaleComponent } from './components/add-sale/add-sale.component';
 import { SalesComponent } from './pages/sales/sales.component';
 import { MatCardModule } from '@angular/material/card';
+import { NgChartsModule } from 'ng2-charts';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
   declarations: [SalesGraphComponent, AddSaleComponent, SalesComponent],
@@ -16,6 +19,9 @@ import { MatCardModule } from '@angular/material/card';
     FormsModule,
     ReactiveFormsModule,
     MatCardModule,
+    NgChartsModule,
+    MatButtonModule,
+    MatIconModule,
   ],
 })
 export class SalesModule {}

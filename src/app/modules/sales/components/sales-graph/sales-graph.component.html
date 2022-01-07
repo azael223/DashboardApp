@@ -1,1 +1,6 @@
-<p>sales-graph works!</p>
+<mat-card class="h-100 w-100 d-flex flex-column">
+  <mat-card-title>Ventas</mat-card-title>
+  <mat-card-content class="h-100 p-2 p-lg-5">
+    <canvas class="h-100" baseChart [type]="type" [data]="data" [options]="options"> </canvas>
+  </mat-card-content>
+</mat-card>
