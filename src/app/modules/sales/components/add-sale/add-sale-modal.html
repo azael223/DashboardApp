@@ -1,0 +1,34 @@
+<form [formGroup]="form">
+  <div mat-dialog-content>
+    <h1>Nueva venta</h1>
+
+    <!-- nombre del producto -->
+    <mat-form-field class="w-100" appearance="outline">
+      <mat-label>Nombre del producto</mat-label>
+      <input
+        matInput
+        type="text"
+        formControlName="producto"
+        placeholder="Nombre del producto <]:{)"
+      />
+      <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+    </mat-form-field>
+
+    <mat-form-field class="w-100" appearance="outline">
+      <mat-label>Importe</mat-label>
+      <input
+        matInput
+        type="number"
+        formControlName="importe"
+        placeholder="Importe <]:{)"
+      />
+      <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+    </mat-form-field>
+  </div>
+
+  <div mat-dialog-actions>
+    <button mat-raised-button color="primary" (click)="addSale()">
+      Agregar
+    </button>
+  </div>
+</form>

@@ -16,6 +16,7 @@ import { ChatModule } from './modules/chat/chat.module';
     BrowserAnimationsModule,
     HttpClientModule,
     ChatModule,
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

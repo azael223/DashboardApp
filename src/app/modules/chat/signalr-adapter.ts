@@ -15,23 +15,28 @@ import { map, catchError } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
 
 import * as signalR from '@microsoft/signalr';
+import { ApiService } from 'src/app/services/api.service';
+import { SignalrService } from 'src/app/services/signalr.service';
 
 export class SignalRAdapter extends ChatAdapter {
   public userId!: string;
 
   private hubConnection!: signalR.HubConnection;
-  public static serverBaseUrl: string =
-    'https://ng-chat-api.azurewebsites.net/'; // Set this to 'https://localhost:5001/' if running locally
+  public static serverBaseUrl: string = 'http://localhost:7071/api/'; // Set this to 'https://localhost:5001/' if running locally
 
-  constructor(private username: string, private http: HttpClient) {
+  constructor(
+    private username: string,
+    private _api: ApiService,
+    private _signalR: SignalrService
+  ) {
     super();
 
-    this.initializeConnection();
+    // this.initializeConnection();
   }
 
   private initializeConnection(): void {
     this.hubConnection = new signalR.HubConnectionBuilder()
-      .withUrl(`${SignalRAdapter.serverBaseUrl}chat`)
+      .withUrl(`${SignalRAdapter.serverBaseUrl}`)
       .build();
 
     this.hubConnection
@@ -81,16 +86,12 @@ export class SignalRAdapter extends ChatAdapter {
   listFriends(): Observable<ParticipantResponse[]> {
     // List connected users to show in the friends list
     // Sending the userId from the request body as this is just a demo
-    return this.http
-      .post(`${SignalRAdapter.serverBaseUrl}listFriends`, {
-        currentUserId: this.userId,
+    return this._api.Messages.get(this.userId).pipe(
+      map((res: any) => res),
+      catchError((error: any) => {
+        throw error.error || 'Server error';
       })
-      .pipe(
-        map((res: any) => res),
-        catchError((error: any) => {
-          throw error.error || 'Server error';
-        })
-      );
+    );
   }
 
   getMessageHistory(destinataryId: any): Observable<Message[]> {
